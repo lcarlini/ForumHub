@@ -26,7 +26,18 @@ npm install
 npm run dev        # http://localhost:5173/ForumHub/
 npm run build      # typecheck + production build (dist/)
 npm run preview
+npm test           # run the test suite once
+npm run test:watch # watch mode
 ```
+
+## Tests
+
+Vitest with jsdom, fake-indexeddb for storage, and Testing Library for the UI. The suite runs in CI before every Pages deploy.
+
+- `src/lib/crypto.test.ts`: vault round-trip, wrong-password rejection, no plaintext in the stored record, fresh IV per save, tamper detection, unicode, KDF parameters.
+- `src/lib/vault-store.test.ts`: setup, lock/unlock, persistence across a simulated restart, destroy, encrypted backup restore and wrong-password refusal, backup file validation.
+- `src/lib/ai.test.ts`: provider request shape (OpenAI, OpenRouter, Anthropic), input truncation, error surfacing. `fetch` is mocked.
+- `src/simulation.test.tsx`: user journeys through the real UI: first-run vault creation with a forum saved as a favorite and shown on Home; lock, wrong password, and unlock; creating and disabling an alert rule; the AI tab's empty state.
 
 ## What's in this version (Phase 1)
 

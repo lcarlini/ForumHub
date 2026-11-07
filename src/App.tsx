@@ -1,4 +1,4 @@
-import { useState, type ComponentType } from 'react';
+import { useEffect, useState, type ComponentType } from 'react';
 import { useVault } from './lib/vault-store';
 import Lock from './screens/Lock';
 import Home, { type Route } from './screens/Home';
@@ -18,6 +18,11 @@ const NAV: { route: Route; label: string; icon: string }[] = [
 export default function App() {
   const status = useVault((s) => s.status);
   const [route, setRoute] = useState<Route>('home');
+
+  // Always land on Home after unlocking, not on whatever screen was open before the lock.
+  useEffect(() => {
+    if (status !== 'unlocked') setRoute('home');
+  }, [status]);
 
   if (status === 'loading') {
     return (
