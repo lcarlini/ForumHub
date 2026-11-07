@@ -9,12 +9,13 @@ Credentials live in an encrypted vault: the master password and derived keys nev
 
 The workflow at `.github/workflows/pages.yml` builds and publishes `dist/` on every push to `main`.
 
-One-time setup in the repository:
+The first run enables Pages automatically (`configure-pages` with `enablement: true`). If the deploy job still reports that Pages is not enabled, set it manually once:
 
 1. Go to **Settings → Pages**.
 2. Under **Build and deployment → Source**, choose **GitHub Actions**.
-3. Push to `main` (or run the "Deploy to GitHub Pages" workflow manually from the **Actions** tab).
-4. The site appears at https://lcarlini.github.io/ForumHub/ once the `deploy` job finishes.
+3. Re-run the workflow from the **Actions** tab.
+
+The site appears at https://lcarlini.github.io/ForumHub/ once the `deploy` job finishes.
 
 The app is built with `base: '/ForumHub/'` in `vite.config.ts`. If you rename the repository or serve it from a custom domain at the root, change that value.
 
