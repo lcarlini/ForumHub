@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* Design tokens. Dark is the default; `html.light` swaps the surface colors. */
+@theme {
+  --color-bg: #0b1020;
+  --color-panel: rgb(255 255 255 / 0.05);
+  --color-panel-strong: rgb(255 255 255 / 0.09);
+  --color-line: rgb(255 255 255 / 0.1);
+  --color-fg: #e6ebf5;
+  --color-muted: #8a94ab;
+  --color-accent: #22d3ee;
+  --color-accent-2: #8b5cf6;
+  --color-danger: #f87171;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html.light {
+  --color-bg: #f4f6fb;
+  --color-panel: rgb(255 255 255 / 0.85);
+  --color-panel-strong: rgb(255 255 255 / 1);
+  --color-line: rgb(15 23 42 / 0.1);
+  --color-fg: #0f172a;
+  --color-muted: #55607a;
+  --color-accent: #0891b2;
+  --color-accent-2: #7c3aed;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(60% 40% at 10% 0%, rgb(34 211 238 / 0.12), transparent 70%),
+    radial-gradient(50% 40% at 100% 10%, rgb(139 92 246 / 0.12), transparent 70%);
+  background-attachment: fixed;
+}
+
+/* Keep fixed bottom nav clear of iOS home indicator. */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+::selection {
+  background: rgb(34 211 238 / 0.3);
+}
